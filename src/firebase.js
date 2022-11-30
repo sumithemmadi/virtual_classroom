@@ -14,6 +14,7 @@ const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
+var storage = app.storage();
 
 const signInWithGoogle = async () => {
   try {
@@ -40,4 +41,4 @@ const logout = () => {
   auth.signOut();
 };
 
-export { app, auth, db, signInWithGoogle, logout };
+export { app, storage, auth, db, signInWithGoogle, logout };

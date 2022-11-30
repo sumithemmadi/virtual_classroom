@@ -7,8 +7,11 @@ import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useHistory, useParams } from "react-router-dom";
 import Announcement from "../components/Announcement";
-import { auth, db } from "../firebase";
+import { auth, db, storage } from "../firebase";
 import "./Class.css";
+import DocViewer from "react-doc-viewer";
+// import attach_file from ";
+import { ReactComponent as YourSvg } from './attachment.svg';
 
 function Class() {
   const [classData, setClassData] = useState({});
@@ -28,6 +31,7 @@ function Class() {
     let reversedArray = classData?.posts?.reverse();
     setPosts(reversedArray);
   }, [classData]);
+
 
   const createPost = async () => {
     try {
@@ -51,6 +55,27 @@ function Class() {
     }
   };
 
+
+
+  const [image, setImage] = useState('');
+  const [Url, setUrl] = useState('');
+  const upload = (e) => {
+    setImage(e.target.files[0]);
+    if (image == null)
+      return;
+    setUrl("Getting Download Link...")
+
+    // Sending File to Firebase Storage
+    storage.ref(`/images/${image.name}`).put(image)
+      .on("state_changed", alert("success"), () => {
+        // Getting Download Link
+        storage.ref("images").child(image.name).getDownloadURL()
+          .then((url) => {
+            setUrl(url);
+          })
+      });
+  }
+
   useEffect(() => {
     db.collection("classes")
       .doc(id)
@@ -60,12 +85,12 @@ function Class() {
         console.log(data);
         setClassData(data);
       });
-  }, [history,id]);
+  }, [history, id]);
 
   useEffect(() => {
     if (loading) return;
     if (!user) history.replace("/");
-  }, [loading, user,history]);
+  }, [loading, user, history]);
 
   return (
     <div className="class">
@@ -73,17 +98,31 @@ function Class() {
         <div className="class__name">{classData?.name}</div>
       </div>
       <div className="class__announce">
-        <img src={user?.photoURL} alt="My image" />
+        <img src={user?.photoURL} alt="logo" />
         <input
           type="text"
           value={announcementContent}
-          onChange={(e) => setAnnouncementContent(e.target.value)}
+          onChange={(e) => { setAnnouncementContent(e.target.value) }}
           placeholder="Announce something to your class"
         />
+        <IconButton>
+          <div className="image-upload">
+            <label for="file-input">
+              {/* <img src={YourSvg} alt="attachment-logo" /> */}
+              <YourSvg />
+            </label>
+            <input id="file-input" style={{ display: "none" }} type="file" onChange={(e) => {
+              upload(e);
+            }
+            } />
+          </div>
+
+        </IconButton>
         <IconButton onClick={createPost}>
           <SendOutlined />
         </IconButton>
       </div>
+      <p><a href={Url}>{Url}</a></p>
       {posts?.map((post) => (
         <Announcement
           authorId={post.authorId}
