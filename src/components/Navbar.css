@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster:ital,wght@0,400;0,900;1,700&display=swap");
+
 .navbar {
   width: 100vw;
   height: 65px;
@@ -30,4 +32,8 @@
 .navbar__logo {
   height: 30px;
   width: auto;
+}
+
+.navbar_span_name{
+  font-family: "Lobster";
 }

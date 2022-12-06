@@ -8,6 +8,7 @@ import { createDialogAtom, joinDialogAtom } from "../utils/atoms";
 import CreateClass from "./CreateClass";
 import JoinClass from "./JoinClass";
 import "./Navbar.css";
+import Logo from "./images/logo.png"
 
 function Navbar() {
   const [user, loading, error] = useAuthState(auth);
@@ -33,11 +34,11 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           <img
-            src="https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png"
-            alt="Google Logo"
+            src={Logo}
+            alt="Logo"
             className="navbar__logo"
-          />{" "}
-          <span>Classroom</span>
+          />
+          <span className="navbar_span_name">Virtual Classroom</span>
         </div>
         <div className="navbar__right">
           <IconButton
