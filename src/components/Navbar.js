@@ -8,7 +8,7 @@ import { createDialogAtom, joinDialogAtom } from "../utils/atoms";
 import CreateClass from "./CreateClass";
 import JoinClass from "./JoinClass";
 import "./Navbar.css";
-import Logo from "./images/logo.png"
+import Logo from "../screens/images/google-classroom-icon.svg"
 
 function Navbar() {
   const [user, loading, error] = useAuthState(auth);

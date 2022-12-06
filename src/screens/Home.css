@@ -1,4 +1,6 @@
-*{
+@import url("https://fonts.googleapis.com/css2?family=Lobster:ital,wght@0,400;0,900;1,700&display=swap");
+
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -11,7 +13,7 @@
   background-size: 100% 100%;
 }
 
-.logo{
+.logo {
   margin: auto;
   margin-right: 15px;
   overflow: hidden;
@@ -48,11 +50,12 @@ nav {
   padding: 0.2rem 2rem;
   /* box-shadow: 0 3px 5px rgb(0 0 0 / 10%); */
 }
-.logo-container{
+
+.logo-container {
   display: flex;
 }
 
-.btn-class{
+.btn-class {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -88,16 +91,21 @@ nav {
   margin: 10px;
 }
 
-.login-btn{
+.login-btn {
   background-color: aliceblue;
   color: black;
   padding-left: 0.5rem;
 }
-.google-logo{
+
+.google-logo {
   width: 35px;
   padding-right: 5px;
 }
-.btn-anchor{
+
+.btn-anchor {
   text-decoration: none;
 }
 
+.head_name {
+  font-family: "Lobster";
+}

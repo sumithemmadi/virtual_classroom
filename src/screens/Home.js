@@ -27,7 +27,7 @@ function Home() {
               height={40}
               width={40}
             />
-            <h1>VIRTUAL CLASSROOM</h1>
+            <h1 className="head_name">Virtual Classroom</h1>
           </div>
           <button className="button" onClick={signInWithGoogle}>
             Sign in
