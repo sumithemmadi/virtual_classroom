@@ -63,7 +63,7 @@ function Class() {
     setImage(e.target.files[0]);
     if (image == null)
       return;
-    setUrl("Getting Download Link...")
+    // setUrl("Getting Download Link...")
 
     // Sending File to Firebase Storage
     storage.ref(`/images/${image.name}`).put(image)
@@ -122,7 +122,7 @@ function Class() {
           <SendOutlined />
         </IconButton>
       </div>
-      <p><a href={Url}>{Url}</a></p>
+      {/* <p><a href={Url}>{Url}</a></p> */}
       {posts?.map((post) => (
         <Announcement
           authorId={post.authorId}
